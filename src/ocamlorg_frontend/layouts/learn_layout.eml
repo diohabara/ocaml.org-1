@@ -51,6 +51,10 @@ let sidebar_icon_link_block
     </a>
   </div>
 
+let htmlx_href_attributes href
+=
+  <% if String.get href 0 != '#' then ( %> hx-get="<%s href %>" hx-push-url="true" <% ); %>
+
 let sidebar_link
 ~title
 ~href
@@ -58,12 +62,12 @@ let sidebar_link
   match current with
   | true ->
     <a class="flex text-primary-600 bg-primary-100 py-2 px-3 rounded-md text-sm font-semibold" href="<%s href %>"
-      <% if String.get href 0 != '#' then ( %> hx-get="<%s href %>" hx-push-url="true" <% ); %>>
+      <%s! htmlx_href_attributes href %>>
       <%s title %>
     </a>
   | false ->
     <a class="font-semibold text-sm text-body-400 hover:bg-gray-100 block py-2 px-3" href="<%s href %>"
-      <% if String.get href 0 != '#' then ( %> hx-get="<%s href %>" hx-push-url="true" <% ); %>>
+      <%s! htmlx_href_attributes href %>>
       <%s title %>
     </a>
 
@@ -94,7 +98,8 @@ inner_html
   ~title
   ~description
   ~canonical @@
-  <div x-data="{ open: false, sidebar: window.innerWidth > 1024 && true, showOnMobile: false}" @resize.window="sidebar = window.innerWidth > 1024">
+  <div x-data="{ open: false, sidebar: window.innerWidth > 1024 && true, showOnMobile: false}" @resize.window="sidebar = window.innerWidth > 1024"
+    x-on:close-sidebar="sidebar=window.innerWidth > 1024 && true">
     <button class="bg-primary-600  p-3 z-30 rounded-r-xl text-white shadow-md top-2/4 fixed lg:hidden left-0"
       :class="sidebar ? 'pl-1 pr-2': ''" x-on:click="sidebar = ! sidebar">
       <div class="transition-transform" :class='sidebar ? "" : "rotate-180" '>
@@ -103,7 +108,7 @@ inner_html
         </svg>
       </div>
     </button>
-    <div class="lg:py-24 bg-white pt-10 md:pt-16">
+    <div class="bg-white">
       <div class="container-fluid wide">
         <div class="flex">
           <div
@@ -112,14 +117,26 @@ inner_html
             x-transition:enter-start="-translate-x-full" x-transition:leave="transition duration-100 ease-in"
             x-transition:leave-end="-translate-x-full">
 
-            <div id="htmlx-sidebar" hx-swap-oob="true">
+            <div class="pb-24 pt-10 lg:pt-16" id="htmlx-sidebar" hx-swap-oob="true">
               <%s! sidebar_html %>
             </div>
           </div>
-          <div id="htmlx-content" hx-swap-oob="true">
+          <div class="pb-24 pt-10 md:pt-20" id="htmlx-content" hx-swap-oob="true">
             <%s! inner_html %>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <script>
+  window.onload = (event) => {
+    Alpine.data('sidebar', (initialOpenState = false) => ({
+      open: initialOpenState
+    }));
+
+    document.body.addEventListener('htmx:afterRequest', (evt) => {
+      window.scrollTo(0, 0);
+      evt.detail.elt.dispatchEvent(new CustomEvent('close-sidebar', { bubbles: true }));
+    });
+  };
+  </script>
