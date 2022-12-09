@@ -57,11 +57,13 @@ let sidebar_link
 ~current = 
   match current with
   | true ->
-    <a class="flex text-primary-600 bg-primary-100 py-2 px-3 rounded-md text-sm font-semibold" href="<%s href %>">
+    <a class="flex text-primary-600 bg-primary-100 py-2 px-3 rounded-md text-sm font-semibold" href="<%s href %>"
+      <% if String.get href 0 != '#' then ( %> hx-get="<%s href %>" hx-push-url="true" <% ); %>>
       <%s title %>
     </a>
   | false ->
-    <a class="font-semibold text-sm text-body-400 hover:bg-gray-100 block py-2 px-3" href="<%s href %>">
+    <a class="font-semibold text-sm text-body-400 hover:bg-gray-100 block py-2 px-3" href="<%s href %>"
+      <% if String.get href 0 != '#' then ( %> hx-get="<%s href %>" hx-push-url="true" <% ); %>>
       <%s title %>
     </a>
 
@@ -110,9 +112,13 @@ inner_html
             x-transition:enter-start="-translate-x-full" x-transition:leave="transition duration-100 ease-in"
             x-transition:leave-end="-translate-x-full">
 
-            <%s! sidebar_html %>
+            <div id="htmlx-sidebar" hx-swap-oob="true">
+              <%s! sidebar_html %>
+            </div>
           </div>
-          <%s! inner_html %>
+          <div id="htmlx-content" hx-swap-oob="true">
+            <%s! inner_html %>
+          </div>
         </div>
       </div>
     </div>
