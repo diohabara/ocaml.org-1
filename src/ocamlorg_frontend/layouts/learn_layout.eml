@@ -135,6 +135,9 @@ inner_html
     }));
 
     document.body.addEventListener('htmx:afterRequest', (evt) => {
+      if (evt.detail.error || evt.detail.failed) {
+        window.location = evt.detail.requestConfig.path;
+      }
       window.scrollTo(0, 0);
       evt.detail.elt.dispatchEvent(new CustomEvent('close-sidebar', { bubbles: true }));
     });
