@@ -8,8 +8,7 @@ type metadata = {
   date : string;
   preview_image : string option;
   featured : bool option;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let decode_sources s =
   let yaml = Utils.decode_or_raise Yaml.of_string s in
@@ -113,7 +112,6 @@ type t = {
   featured : bool;
   body_html : string;
 }
-[@@deriving yaml]
 
 let all () =
   Utils.map_files

@@ -4,8 +4,7 @@ type metadata = {
   description : string;
   date : string;
   category : string;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/tutorials/"
 

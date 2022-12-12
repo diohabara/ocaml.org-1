@@ -5,8 +5,7 @@ type metadata = {
   theme : string;
   synopsis : string;
   url : string;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/success_stories/"
 

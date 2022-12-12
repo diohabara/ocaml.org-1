@@ -3,8 +3,7 @@ type metadata = {
   description : string;
   meta_title : string;
   meta_description : string;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/pages/"
 

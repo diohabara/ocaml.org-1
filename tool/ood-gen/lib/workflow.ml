@@ -1,5 +1,12 @@
-type metadata = { title : string } [@@deriving yaml]
-type t = { title : string; body_md : string; body_html : string }
+type metadata = {
+  title : string
+} [@@deriving yaml]
+
+type t = {
+  title : string;
+  body_md : string;
+  body_html : string
+}
 
 let all () =
   Utils.map_files

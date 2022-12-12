@@ -10,8 +10,7 @@ type metadata = {
   link : string;
   embed : string option;
   year : int;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/videos.yml"
 

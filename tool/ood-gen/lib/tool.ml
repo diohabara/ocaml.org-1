@@ -5,8 +5,7 @@ type metadata = {
   synopsis : string;
   description : string;
   lifecycle : string;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/tools.yml"
 

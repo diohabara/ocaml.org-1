@@ -3,17 +3,11 @@ type metadata = {
   email : string option;
   github_username : string option;
   avatar : string option;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/opam-users.yml"
 
-type t = {
-  name : string;
-  email : string option;
-  github_username : string option;
-  avatar : string option;
-}
+type t = metadata
 
 let parse s =
   let yaml = Utils.decode_or_raise Yaml.of_string s in

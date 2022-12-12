@@ -1,12 +1,14 @@
-type location = { lat : float; long : float } [@@deriving yaml]
+type location = {
+  lat : float;
+  long : float
+} [@@deriving yaml]
 
 type metadata = {
   title : string;
   url : string;
   textual_location : string;
   location : location;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 type t = metadata
 

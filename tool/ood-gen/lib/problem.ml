@@ -3,8 +3,7 @@ type metadata = {
   number : string;
   difficulty : string;
   tags : string list;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/problems/"
 

@@ -12,8 +12,7 @@ type metadata = {
   date : string;
   intro : string;
   highlights : string;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/releases/"
 

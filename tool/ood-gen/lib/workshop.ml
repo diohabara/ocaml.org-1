@@ -20,8 +20,7 @@ type committee_member = {
   role : role option;
   affiliation : string option;
   picture : string option;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 type presentation = {
   title : string;
@@ -31,8 +30,7 @@ type presentation = {
   slides : string option;
   poster : bool option;
   additional_links : string list option;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 type metadata = {
   title : string;
@@ -42,8 +40,7 @@ type metadata = {
   presentations : presentation list;
   program_committee : committee_member list;
   organising_committee : committee_member list;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/workshops"
 

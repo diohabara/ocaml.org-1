@@ -1,11 +1,13 @@
-type location = { lat : float; long : float } [@@deriving yaml]
+type location = {
+  lat : float;
+  long : float
+} [@@deriving yaml]
 
 type course = {
   name : string;
   acronym : string option;
   online_resource : string option;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 type metadata = {
   name : string;
@@ -15,8 +17,7 @@ type metadata = {
   continent : string;
   courses : course list;
   location : location option;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/academic_institutions"
 

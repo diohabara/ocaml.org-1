@@ -4,8 +4,7 @@ type metadata = {
   date : string;
   tags : string list;
   authors : string list option;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 type t = {
   title : string;

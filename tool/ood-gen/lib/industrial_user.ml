@@ -6,8 +6,7 @@ type metadata = {
   locations : string list;
   consortium : bool;
   featured : bool;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/industrial_users/"
 

@@ -1,4 +1,7 @@
-type link = { description : string; uri : string } [@@deriving yaml]
+type link = {
+  description : string;
+  uri : string
+} [@@deriving yaml]
 
 type metadata = {
   title : string;
@@ -11,8 +14,7 @@ type metadata = {
   links : link list;
   rating : int option;
   featured : bool;
-}
-[@@deriving yaml]
+} [@@deriving yaml]
 
 let path = Fpath.v "data/books/"
 
