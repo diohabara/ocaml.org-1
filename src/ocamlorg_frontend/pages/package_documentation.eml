@@ -48,7 +48,7 @@ Package_layout.render
 ~tab:Package_layout.Documentation
 ~extra_header_html:(Package_layout.package_docs_link ~package ~active:true)
 ~wide:true @@
-  <main>
+  <main class="bg-white">
     <div x-data="{ open: false, sidebar: window.innerWidth > 1024 && true, showOnMobile: false}" @resize.window="sidebar = window.innerWidth > 1024"
   x-on:close-sidebar="sidebar=window.innerWidth > 1024 && true">
       <div role="button" class="bg-primary-600  p-3 z-30 rounded-r-xl text-white shadow-md top-2/4 fixed lg:hidden left-0"

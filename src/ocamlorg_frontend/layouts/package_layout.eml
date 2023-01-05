@@ -65,6 +65,7 @@ inner_html =
     <% ); %>
     <link rel="stylesheet" href="/vendors/font-files/inter.css">
     <script defer src="/vendors/alpine.min.js"></script>
+    <script defer src="/vendors/htmx.min.js"></script>
     <title><%s title %></title>
   </head>
 
